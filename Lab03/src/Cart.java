@@ -37,6 +37,28 @@ public class Cart {
 			
 		}
 	}
+	public Boolean addDigitalVideoDisc(DigitalVideoDisc [] disc) {
+		int j=0;
+		for (int i=1;i<=disc.length;i++) {
+			if(addDigitalVideoDisc(disc[i])) {
+				
+			}else {
+				j++;
+				System.out.println("Can not add item"+(i+1)+"cause the cart is full or dvd already exist");
+			}
+		}
+		if (j!=0) {
+		return true;
+		}else return false;
+	}
+	public Boolean addDigitalVideoDisc(DigitalVideoDisc disc1,DigitalVideoDisc disc2) {
+		int j = 0;
+		if (!addDigitalVideoDisc(disc1)) j++;
+		if (!addDigitalVideoDisc(disc2)) j++;
+		if (j!=0) return false;
+		else return true;
+	}
+	
 	public void removeDigitalVideoDisc(DigitalVideoDisc disc) {
 			int i = existedDigital(disc);
 			if (i != -1) {
