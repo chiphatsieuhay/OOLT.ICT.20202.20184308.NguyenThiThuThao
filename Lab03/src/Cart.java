@@ -19,6 +19,16 @@ public class Cart {
 		}
 		return -1;
 	}
+	public void searchById(int id) {
+		for (int i=0;i<qty;i++) {
+			if (itemsOrder[i].getId() == id ) {
+				System.out.println(itemsOrder[i].getDetail());
+				return ;
+			}
+		}
+		System.out.println("Can not find this");
+		return;
+	}
 	public Boolean addDigitalVideoDisc(DigitalVideoDisc disc) {
 		if (qtyOrdered()+1>20) 
 		{
@@ -40,6 +50,20 @@ public class Cart {
 	public Boolean addDigitalVideoDisc(DigitalVideoDisc [] disc) {
 		int j=0;
 		for (int i=1;i<=disc.length;i++) {
+			if(addDigitalVideoDisc(disc[i])) {
+				
+			}else {
+				j++;
+				System.out.println("Can not add item"+(i+1)+"cause the cart is full or dvd already exist");
+			}
+		}
+		if (j!=0) {
+		return true;
+		}else return false;
+	}
+	public Boolean addDigitalVideoDisc(DigitalVideoDisc [] disc,int numberOfDisc) {
+		int j=0;
+		for (int i=1;i<numberOfDisc;i++) {
 			if(addDigitalVideoDisc(disc[i])) {
 				
 			}else {
