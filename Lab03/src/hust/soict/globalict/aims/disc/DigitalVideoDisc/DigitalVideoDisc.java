@@ -1,3 +1,4 @@
+package hust.soict.globalict.aims.disc.DigitalVideoDisc;
 
 public class DigitalVideoDisc {
 		private String title;

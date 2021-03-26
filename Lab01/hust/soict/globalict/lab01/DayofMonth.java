@@ -1,3 +1,5 @@
+package hust.soict.globalict.lab01;
+
 import java.util.Scanner;
 public class DayofMonth{
     static int month;
