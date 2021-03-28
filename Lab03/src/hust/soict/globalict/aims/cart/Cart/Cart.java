@@ -5,7 +5,7 @@ import hust.soict.globalict.aims.disc.DigitalVideoDisc.DigitalVideoDisc;
 public class Cart {
 	public static final int MAX_NUMBERS_ORDERED = 21;
 	private int qty = 0;
-	private DigitalVideoDisc itemsOrder[] = new DigitalVideoDisc[MAX_NUMBERS_ORDERED];
+	public DigitalVideoDisc itemsOrder[] = new DigitalVideoDisc[MAX_NUMBERS_ORDERED];
 	public int qtyOrdered() {
 		return qty;
 	}
@@ -21,6 +21,32 @@ public class Cart {
 			}
 		}
 		return -1;
+	}
+	public void searchforDVDsByTitle2(String title) {
+		for (int i=0;i<qty;i++) {
+			if (itemsOrder[i].search2(title)==true) {
+				System.out.println("Your cart have items contain this title");
+				return;
+			}
+		}
+		System.out.println("there is no matched items");
+		
+	}
+	
+	public void searchforDVDsByTitle(String title) {
+		int a =0;
+		for (int i=0;i<qty;i++) {
+			if (itemsOrder[i].search(title)==true) {
+				itemsOrder[i].getDetail();
+				a++;
+				
+			}
+		}
+		if (a ==0 ) {
+			System.out.println("there is no matched items");
+		}
+		
+		
 	}
 	public void searchById(int id) {
 		for (int i=0;i<qty;i++) {
@@ -40,7 +66,7 @@ public class Cart {
 		}
 		else {
 			if (existedDigital(disc)==-1) {
-				itemsOrder[qty] = new DigitalVideoDisc(disc.getTitle(),disc.getCategory(),disc.getDirector(),disc.getLength(),disc.getCost());
+				itemsOrder[qty] = disc;
 				qty++;
 				return true;
 			}else {
@@ -85,7 +111,23 @@ public class Cart {
 		if (j!=0) return false;
 		else return true;
 	}
-	
+	public Boolean removeDVDbyID(int id) {
+		for (int i = 0 ;i< qty;i++) {
+			if (id == itemsOrder[i].getId()) {
+				for(int j=i;j<qty;j++) {
+					itemsOrder[j]=itemsOrder[j+1];
+				}
+				itemsOrder[qty-1]=null;
+				qty--;
+				
+				System.out.println("Removed");
+				return true;
+			}
+		}
+		System.out.println("DVD is not in Store");
+		
+		return false;	
+	}
 	public void removeDigitalVideoDisc(DigitalVideoDisc disc) {
 			int i = existedDigital(disc);
 			if (i != -1) {

@@ -11,7 +11,7 @@ public class DVDUtils {
 		if (disc1.getTitle().compareTo(disc2.getTitle())==1) return disc1.getTitle();
 		else return disc2.getTitle();
 	}
-	public static void swapTwo(DigitalVideoDisc dvd1,DigitalVideoDisc dvd2) {
+	public static void swapTwo(DigitalVideoDisc dvd1,DigitalVideoDisc dvd2) { 
 		
 		//tmp
 		String title1 = dvd1.getTitle();

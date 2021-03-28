@@ -1,4 +1,7 @@
+
 package hust.soict.globalict.aims.disc.DigitalVideoDisc;
+
+import java.io.*;
 
 public class DigitalVideoDisc {
 		private String title;
@@ -80,5 +83,22 @@ public class DigitalVideoDisc {
 			this.director = director;
 			this.cost = cost;
 		}
+		public boolean search2(String title) {
+			 return (this.title).indexOf(title) > -1;
+		}
+	
+		public boolean search(String title) {
+//			System.out.println("\n-------------------------------------\n");
+//			System.out.println("the title of this item is:"+title);
+			
+			String[] currencies = (this.title).split(" ");
+//			System.out.println("the length of this title:"+currencies.length);
+			for (int i=0;i<currencies.length;i++) {
+//				System.out.println("currencies i"+i+":"+currencies[i]);
+				if (currencies[i].equals(title)) return true;
+			}
+			return false;
+		}
+		
 		
 }
