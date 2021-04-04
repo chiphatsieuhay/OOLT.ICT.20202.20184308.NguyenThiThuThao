@@ -1,82 +1,85 @@
 package hust.soict.globalict.aims;
 
-import hust.soict.globalict.aims.disc.DigitalVideoDisc.DigitalVideoDisc;
+import java.util.ArrayList;
+
+
+import hust.soict.globalict.aims.media.Media;
 
 public class Store {
-	public DigitalVideoDisc itemsInStore[] = new DigitalVideoDisc[10000];
-	private static int nbDigitalVideoDiscs = 0;
+//	public Media itemsInStore[] = new Me[10000];
+	public ArrayList<Media> itemsInStore = new
+			ArrayList<Media>();
 	public int qty = 0;
-	public int existedDigital(DigitalVideoDisc disc) {
-		for (int i = 0 ;i< qty;i++) {
-			if (itemsInStore[i].getCategory() == disc.getCategory() 
-					&&itemsInStore[i].getCost() == disc.getCost()
-					&&itemsInStore[i].getDirector() == disc.getDirector()
-					&&itemsInStore[i].getTitle() == disc.getTitle()
-					&&itemsInStore[i].getLength() == disc.getLength()
-					) {
+	public int existedMedia(Media media) {
+		for (int i = 0;i < itemsInStore.size();i++) {
+			if (media.getId() == itemsInStore.get(i).getId()) {
+				System.out.println("media existed");
 				return i;
 			}
 		}
+		System.out.println("media did not exist");
 		return -1;
 	}
-	public void DiscInfo(DigitalVideoDisc disc) {
-		System.out.print(disc.getId()+"\t"+disc.getTitle()+"\t"+disc.getCategory()+"\t"+disc.getDirector()+"\t"+disc.getCost()+"\t"+disc.getLength()+"\n");
+	public void MediaInfo(Media media) {
+		System.out.print(media.getId()+"\t"+media.getTitle()+"\t"+media.getCategory()+"\t"+media.getCost()+"\n");
 	}
-	public void DiscInfoName(DigitalVideoDisc disc) {
-		System.out.print(disc.getId()+"\t"+disc.getTitle()+"\n");
-	}
-	public Boolean addDVD(DigitalVideoDisc disc) {
-		if (existedDigital(disc)==-1) {
-			itemsInStore[qty] = disc;
-			nbDigitalVideoDiscs++;
-			qty++;
-//			System.out.println("Added item");
-//			System.out.println("Number DVD"+nbDigitalVideoDiscs);
-			DiscInfo(disc);
+//	public void DiscInfoName(DigitalVideoDisc disc) {
+//		System.out.print(disc.getId()+"\t"+disc.getTitle()+"\n");
+//	}
+	
+		public Boolean addMedia(Media media ) {
+			if (existedMedia(media)!=-1) {
+				return false;
+			}else {
+				itemsInStore.add(media);
+			System.out.println("The media \"" + media.getTitle() + "\" has been added to the current cart!");
 			return true;
-		}else
-		{
-			System.out.println("item have already existed.");
-			DiscInfo(disc);
-			return false;
-		}
+			}
 			
-	}
-	public Boolean removeDVDbyID(int id) {
-		for (int i = 0 ;i< qty;i++) {
-			if (id == itemsInStore[i].getId()) {
-				for(int j=i;j<qty;j++) {
-					itemsInStore[j]=itemsInStore[j+1];
+		}
+		public Media searchById(int id) {
+			for (int i = 0;i < itemsInStore.size();i++) {
+				if (id == itemsInStore.get(i).getId() ) {
+					itemsInStore.get(i).getDetail();
+					return itemsInStore.get(i);
 				}
-				itemsInStore[qty-1]=null;
-				qty--;
-				
-				System.out.println("Removed");
-				return true;
 			}
+			System.out.println("Can not find this");
+			return null;
 		}
-		System.out.println("DVD is not in Store");
-		
-		return false;	
-	}
-	public Boolean removeDVD(DigitalVideoDisc disc) {
-		int i = existedDigital(disc);
-		if (i==-1) {
-			System.out.println("DVD is not in Store");
-			DiscInfo(disc);
-			return false;
-		}else
-		{
-			for(int j=i;j<qty;j++) {
-				itemsInStore[j]=itemsInStore[j+1];
+		public Boolean removeMedia(int id) {
+			Media x = searchById(id);
+			if (x!= null) {
+				if (existedMedia(searchById(id))!=-1) {
+					itemsInStore.remove(existedMedia(searchById(id)));
+					System.out.println("Remove done");
+					return true;
+				}else {
+					return false;
+				}
+			}else {
+				return false;
 			}
-			itemsInStore[qty-1]=null;
-			qty--;
-			DiscInfo(disc);
-			System.out.println("Removed");
-			return true;
-		}
 			
-	}
+		}
+//	public Boolean removeDVD(DigitalVideoDisc disc) {
+//		int i = existedDigital(disc);
+//		if (i==-1) {
+//			System.out.println("DVD is not in Store");
+//			DiscInfo(disc);
+//			return false;
+//		}else
+//		{
+//			for(int j=i;j<qty;j++) {
+//				itemsInStore[j]=itemsInStore[j+1];
+//			}
+//			itemsInStore[qty-1]=null;
+//			qty--;
+//			DiscInfo(disc);
+//			System.out.println("Removed");
+//			return true;
+//		}
+//			
+//	}
 	
 }
