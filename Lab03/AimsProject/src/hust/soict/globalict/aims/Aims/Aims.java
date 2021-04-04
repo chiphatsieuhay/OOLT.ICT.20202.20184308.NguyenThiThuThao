@@ -83,6 +83,7 @@ public class Aims {
 			cartMenu(anOrder);
 		case 4:
 			anOrder.getALuckyItem().setCost(0f);
+			cartMenu(anOrder);
 			break;
 		case 5:
 			System.out.println("Place order");
