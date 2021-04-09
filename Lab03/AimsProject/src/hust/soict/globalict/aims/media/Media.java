@@ -3,7 +3,7 @@ package hust.soict.globalict.aims.media;
 import java.time.LocalDate;
 import java.util.Comparator;
 
-public class Media {
+public abstract class Media {
 	protected int id;
 	protected String title;
 	protected String category;
@@ -13,35 +13,20 @@ public class Media {
 	public int getId() {
 		return id;
 	}
-	public void setId(int id) {
-		this.id = id;
-	}
 	public String getTitle() {
 		return title;
 	}
 	public void getDetail() {
 		System.out.println(this.title+"\t"+this.category+"\t"+this.cost);
 	}
-	public void setTitle(String title) {
-		this.title = title;
-	}
 	public String getCategory() {
 		return category;
-	}
-	public void setCategory(String category) {
-		this.category = category;
 	}
 	public float getCost() {
 		return cost;
 	}
-	public void setCost(float cost) {
-		this.cost = cost;
-	}
 	public LocalDate getAddDate() {
 		return addDate;
-	}
-	public void setAddDate(LocalDate addDate) {
-		this.addDate = addDate;
 	}
 	public boolean search(String title) {
 //		System.out.println("\n-------------------------------------\n");
@@ -54,6 +39,19 @@ public class Media {
 			if (currencies[i].equals(title)) return true;
 		}
 		return false;
+	}
+	public Media() {};
+//	public Media(boolean isAdd ) {
+//		
+//	};
+	public Media(int id, String title, String category, float cost, LocalDate addDate) {
+		this.nbMedia++;
+		this.id = nbMedia;
+		this.title = title;
+		this.category = category;
+		this.cost = cost;
+		this.addDate = addDate;
+		
 	}
 	
 }
