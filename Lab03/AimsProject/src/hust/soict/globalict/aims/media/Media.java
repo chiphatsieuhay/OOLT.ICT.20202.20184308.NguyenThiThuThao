@@ -4,6 +4,10 @@ import java.time.LocalDate;
 import java.util.Comparator;
 
 public abstract class Media {
+	public void setCost(float cost) {
+		this.cost = cost;
+	}
+	public abstract void play();
 	protected int id;
 	protected String title;
 	protected String category;
@@ -17,7 +21,7 @@ public abstract class Media {
 		return title;
 	}
 	public void getDetail() {
-		System.out.println(this.title+"\t"+this.category+"\t"+this.cost);
+		System.out.println(this.id+"\t"+this.title+"\t"+this.category+"\t"+this.cost);
 	}
 	public String getCategory() {
 		return category;
@@ -44,13 +48,13 @@ public abstract class Media {
 //	public Media(boolean isAdd ) {
 //		
 //	};
-	public Media(int id, String title, String category, float cost, LocalDate addDate) {
+	public Media( String title, String category, float cost) {
 		this.nbMedia++;
 		this.id = nbMedia;
 		this.title = title;
 		this.category = category;
 		this.cost = cost;
-		this.addDate = addDate;
+		this.addDate = LocalDate.now();
 		
 	}
 	

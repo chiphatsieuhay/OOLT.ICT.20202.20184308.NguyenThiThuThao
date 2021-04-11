@@ -1,5 +1,6 @@
 package hust.soict.globalict.aims.Aims;
 
+import hust.soict.globalict.MemoryDaemon.MemoryDaemon;
 import hust.soict.globalict.aims.Store;
 import hust.soict.globalict.aims.cart.Cart.Cart;
 import hust.soict.globalict.aims.media.DigitalVideoDisc;
@@ -24,6 +25,7 @@ public class Aims {
 		System.out.println("3. Remove media from cart"); 
 		System.out.println("4. Get a lucky item from cart");
 		System.out.println("5. Place order"); 
+		System.out.println("6. Play Media"); 
 		System.out.println("0. Exit"); 
 		System.out.println("--------------------------------"); 
 		System.out.println("Please choose a number: 0-1-2-3-4");
@@ -51,11 +53,7 @@ public class Aims {
 			System.out.println("1: Sort by cost\n2: sort by title");
 			int sort = keyboard.nextInt();
 			if (sort == 1) {
-//				int qty=0;
-//			
-//				DigitalVideoDisc[] disc = Arrays.copyOfRange(anOrder.itemsOrder, 0, anOrder.qtyOrdered());
-//				DigitalVideoDisc[] sorted = DVDUtils.sortedByCost(disc);
-//				anOrder.itemsOrdered.sort
+
 				Collections.sort(anOrder.itemsOrdered,Cart.MediaComparatorCost);
 				System.out.println("DVD - [Title] - [category] - [Director] - [Length]: [Price] $");
 				for (int i=0; i< anOrder.itemsOrdered.size();i++) {
@@ -87,6 +85,10 @@ public class Aims {
 		case 5:
 			System.out.println("Place order");
 			break;
+		case 6:
+			playMedia(anOrder);
+			cartMenu(anOrder);
+			break;
 		case 0: System.exit(0);
 		default: {
 			System.out.println("\nYou must choose a number in 1 2 3 4\n");
@@ -96,7 +98,36 @@ public class Aims {
 		}
 		}
 		
-	
+	public static void playMedia(Cart anOrder,Store Store) {
+		showStore(Store);
+		System.out.println("Which one want to play?"); 
+		Scanner keyboard = new Scanner(System.in);
+		int id = keyboard.nextInt();
+		for(int i = 0;i < Store.itemsInStore.size();i++) {
+			if (id == Store.itemsInStore.get(i).getId()) {
+				Store.itemsInStore.get(i).play();
+				return;
+			}
+		} 
+		System.out.println("Id not existed");
+	}
+	public static void playMedia(Cart anOrder) {
+		Collections.sort(anOrder.itemsOrdered,Cart.MediaComparatorCost);
+		System.out.println("DVD - [Title] - [category] - [Director] - [Length]: [Price] $");
+		for (int i=0; i< anOrder.itemsOrdered.size();i++) {
+			anOrder.itemsOrdered.get(i).getDetail();
+		}
+		System.out.println("Which one want to play?"); 
+		Scanner keyboard = new Scanner(System.in);
+		int id = keyboard.nextInt();
+		for (int i=0; i< anOrder.itemsOrdered.size();i++) {
+			if (id == anOrder.itemsOrdered.get(i).getId()) {
+				anOrder.itemsOrdered.get(i).play();
+				return;
+			}
+		} 
+		System.out.println("Id not existed");
+	}
 	public static void addToCart(Cart anOrder,Store Store) {
 		showStore(Store);
 		System.out.println("Which one want to add?"); 
@@ -116,7 +147,7 @@ public class Aims {
 		for(int i = 0;i < Store.itemsInStore.size();i++) {
 			Store.MediaInfo(Store.itemsInStore.get(i));
 		}
-		System.out.println("Do you want to add to cart?"); 
+		System.out.println("1 to add to cart,2 to play them"); 
 		Scanner keyboard = new Scanner(System.in);
 		int bool = keyboard.nextInt();
 		return bool;
@@ -197,7 +228,12 @@ public class Aims {
 					addToCart(anOrder,Store);
 					switchshowMenu(Store,anOrder);
 					break;
-				}else {
+				}else if (bool == 2) {
+					playMedia(anOrder,Store);
+					switchshowMenu(Store,anOrder);
+					break;
+				}
+				else {
 					System.out.println("\nSo you dont want add\n");
 					switchshowMenu(Store,anOrder);
 					break;
@@ -231,60 +267,9 @@ public class Aims {
 		}
 	}
 	 
-	public static void main(String[] args) {
+	public static void main(String[] args)throws InterruptedException {
 		Cart anOrder = new Cart();
 		
-		
-//		//add dvd part
-//		DigitalVideoDisc dvd1 = new DigitalVideoDisc("The Lion King","Animation","Roger Allers",87,19.95f);
-//		anOrder.addDigitalVideoDisc(dvd1);
-//		
-//		DigitalVideoDisc dvd2 = new DigitalVideoDisc("Star Wars","Science Fiction","George Lucas",87,24.95f);
-//		anOrder.addDigitalVideoDisc(dvd2);
-//	
-//		DigitalVideoDisc dvd3 = new DigitalVideoDisc("Aladin","Animation",18.99f);
-//		anOrder.addDigitalVideoDisc(dvd3);
-//		
-//		
-//		DigitalVideoDisc dvd4 = new DigitalVideoDisc("Aladinn","Animation",18.99f);
-//		anOrder.addDigitalVideoDisc(dvd4);
-//		anOrder.addDigitalVideoDisc(dvd3);
-//		
-//		//show after add
-//		anOrder.showCart();
-//		
-//		
-//		//remove dvd
-//		anOrder.removeDigitalVideoDisc(dvd4);
-//		
-//		//show after remove
-//		anOrder.showCart();
-//		
-//		//show qty
-//		System.out.print("Qty is:");
-//		System.out.println(anOrder.qtyOrdered());
-//		
-//		//show total cost
-//		System.out.print("Total cost is:");
-//		System.out.println(anOrder.totalCost());
-//		
-//		DigitalVideoDisc[] sorted = DVDUtils.sortedByCost(new DigitalVideoDisc[] {dvd1,dvd2,dvd3,dvd4});
-//		System.out.println("Sort by cost:");
-//		System.out.println("DVD - [Title] - [category] - [Director] - [Length]: [Price] $");
-//		for (int i=0;i<sorted.length;i++) {
-//			System.out.println(sorted[i].getDetail());
-//		}
-//		
-//		sorted = DVDUtils.sortedByTitle(new DigitalVideoDisc[] {dvd1,dvd2,dvd3,dvd4});
-//		System.out.println("Sort by title:");
-//		System.out.println("DVD - [Title] - [category] - [Director] - [Length]: [Price] $");
-//		for (int i=0;i<sorted.length;i++) {
-//			System.out.println(sorted[i].getDetail());
-//		}
-//		
-//		//show total cost
-//		System.out.print("Total cost is:");
-//		System.out.println(anOrder.totalCost());
 		
 		
 		//add dvd to Store
@@ -294,10 +279,10 @@ public class Aims {
 		
 		DigitalVideoDisc dvd2 = new DigitalVideoDisc("Star Wars","Science Fiction","George Lucas",87,24.95f);
 		Store.addMedia(dvd2);
-		DigitalVideoDisc dvd3 = new DigitalVideoDisc("Aladin","Animation",18.99f);
+		DigitalVideoDisc dvd3 = new DigitalVideoDisc("Aladin","Animation","Blablo",197,18.99f);
 		Store.addMedia(dvd3);
 		
-		DigitalVideoDisc dvd4 = new DigitalVideoDisc("Aladinn","Animation",18.99f);
+		DigitalVideoDisc dvd4 = new DigitalVideoDisc("Aladinn","Animation","ximaxo",817,181.99f);
 		Store.addMedia(dvd4);
 		DigitalVideoDisc dvd5 = new DigitalVideoDisc("Bo gia","Comedy","Tran Thanh",90,10f);
 		
@@ -306,7 +291,11 @@ public class Aims {
 		Store.addMedia(dvd5);
 		
 		System.out.println("\n-------------------------------------\n");
-	
+		
+		
+		 Thread dt = new Thread(new MemoryDaemon());
+	     dt.setDaemon(true);
+	     dt.start();
 		
 		switchshowMenu(Store,anOrder);
 		

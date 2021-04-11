@@ -62,24 +62,6 @@ public class Store {
 			}
 			
 		}
-//	public Boolean removeDVD(DigitalVideoDisc disc) {
-//		int i = existedDigital(disc);
-//		if (i==-1) {
-//			System.out.println("DVD is not in Store");
-//			DiscInfo(disc);
-//			return false;
-//		}else
-//		{
-//			for(int j=i;j<qty;j++) {
-//				itemsInStore[j]=itemsInStore[j+1];
-//			}
-//			itemsInStore[qty-1]=null;
-//			qty--;
-//			DiscInfo(disc);
-//			System.out.println("Removed");
-//			return true;
-//		}
-//			
-//	}
+
 	
 }

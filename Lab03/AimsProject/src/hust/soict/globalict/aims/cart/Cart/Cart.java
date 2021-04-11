@@ -10,35 +10,7 @@ public class Cart {
 	public static final int MAX_NUMBERS_ORDERED = 20;
 	public ArrayList<Media> itemsOrdered = new
 			ArrayList<Media>();
-//	private int qty = 0;
-////	public DigitalVideoDisc itemsOrder[] = new DigitalVideoDisc[MAX_NUMBERS_ORDERED];
-//	public int qtyOrdered() {
-//		return qty;
-//	}
-//	public int existedDigital(DigitalVideoDisc disc) {
-//		for (int i = 0 ;i< qty;i++) {
-//			if (itemsOrdered[i].getCategory() == disc.getCategory() 
-//					&&itemsOrdered[i].getCost() == disc.getCost()
-//					&&itemsOrdered[i].getDirector() == disc.getDirector()
-//					&&itemsOrdered[i].getTitle() == disc.getTitle()
-//					itemsOrdered					) {
-//				return i;
-//			}
-//		}
-//		return -1;
-//	}
-	
-//	public void searchforDVDsByTitle2(String title) {
-//		for (int i=0;i<qty;i++) {
-//			if (itemsOrder[i].search2(title)==true) {
-//				System.out.println("Your cart have items contain this title");
-//				return;
-//			}
-//		}
-//		System.out.println("there is no matched items");
-//		
-//	}
-//	
+
 	public void searchforDVDsByTitle(String title) {
 		int a =0;
 		for (int i = 0;i < itemsOrdered.size();i++) {
@@ -140,90 +112,6 @@ public class Cart {
 	}
 
    
-//	public Boolean addDigitalVideoDisc(DigitalVideoDisc disc) {
-//		if (qtyOrdered()+1>20) 
-//		{
-//			System.out.println("The cart is full");
-//			return false;	
-//		}
-//		else {
-//			if (existedDigital(disc)==-1) {
-//				itemsOrder[qty] = disc;
-//				qty++;
-//				return true;
-//			}else {
-//				System.out.println("This dvd already exist.");
-//				return false;
-//			}
-//			
-//		}
-//	}
-//	public Boolean addDigitalVideoDisc(DigitalVideoDisc [] disc) {
-//		int j=0;
-//		for (int i=1;i<=disc.length;i++) {
-//			if(addDigitalVideoDisc(disc[i])) {
-//				
-//			}else {
-//				j++;
-//				System.out.println("Can not add item"+(i+1)+"cause the cart is full or dvd already exist");
-//			}
-//		}
-//		if (j!=0) {
-//		return true;
-//		}else return false;
-//	}
-//	public Boolean addDigitalVideoDisc(DigitalVideoDisc [] disc,int numberOfDisc) {
-//		int j=0;
-//		for (int i=1;i<numberOfDisc;i++) {
-//			if(addDigitalVideoDisc(disc[i])) {
-//				
-//			}else {
-//				j++;
-//				System.out.println("Can not add item"+(i+1)+"cause the cart is full or dvd already exist");
-//			}
-//		}
-//		if (j!=0) {
-//		return true;
-//		}else return false;
-//	}
-//	public Boolean addDigitalVideoDisc(DigitalVideoDisc disc1,DigitalVideoDisc disc2) {
-//		int j = 0;
-//		if (!addDigitalVideoDisc(disc1)) j++;
-//		if (!addDigitalVideoDisc(disc2)) j++;
-//		if (j!=0) return false;
-//		else return true;
-//	}
-//	public Boolean removeDVDbyID(int id) {
-//		for (int i = 0 ;i< qty;i++) {
-//			if (id == itemsOrder[i].getId()) {
-//				for(int j=i;j<qty;j++) {
-//					itemsOrder[j]=itemsOrder[j+1];
-//				}
-//				itemsOrder[qty-1]=null;
-//				qty--;
-//				
-//				System.out.println("Removed");
-//				return true;
-//			}
-//		}
-//		System.out.println("DVD is not in Store");
-//		
-//		return false;	
-//	}
-//	public void removeDigitalVideoDisc(DigitalVideoDisc disc) {
-//			int i = existedDigital(disc);
-//			if (i != -1) {
-//				for(int j=i;j<=qty;j++) {
-//					itemsOrder[j]=itemsOrder[j+1];
-//				}
-//				itemsOrder[qty-1]=null;
-//				qty--;
-//			}else {
-//				System.out.println("Can not delete");
-//			}
-//		
-//		
-//	}
 	public void showCart() {
 		for(int i = 0;i < itemsOrdered.size();i++) {
 			itemsOrdered.get(i).getDetail();

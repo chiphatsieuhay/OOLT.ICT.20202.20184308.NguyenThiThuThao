@@ -1,6 +1,6 @@
 package hust.soict.globalict.aims.media;
 
-public class Track {
+public class Track implements Playable{
 	private String director;
 	private int length;
 	public String getDirector() {
@@ -13,5 +13,11 @@ public class Track {
 		super();
 		this.director = director;
 		this.length = length;
+	}
+	@Override
+	public void play() {
+		// TODO Auto-generated method stub
+		System.out.println("Playing DVD: " + this.getDirector());
+		System.out.println("DVD length: " + this.getLength());
 	}
 }

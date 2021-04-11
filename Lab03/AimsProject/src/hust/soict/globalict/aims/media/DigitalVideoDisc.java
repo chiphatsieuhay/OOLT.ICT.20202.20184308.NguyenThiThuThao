@@ -1,9 +1,9 @@
 
 package hust.soict.globalict.aims.media;
 
+import java.time.LocalDate;
 
-
-public class DigitalVideoDisc extends Disc {
+public class DigitalVideoDisc extends Disc implements Playable{
 		private String director;
 		private int length;
 //		private static int nbDigitalVideoDiscs = 0;
@@ -23,38 +23,38 @@ public class DigitalVideoDisc extends Disc {
 			return length;
 		}
 		public DigitalVideoDisc(String title, String category, String director, int length, float cost) {
-			super();
-			nbMedia++;
-			this.id = nbMedia;
-			this.title = title;
-			this.category = category;
+			super(title,category,cost);
+			
+			
+//			this.title = title;
+//			this.category = category;
 			this.director = director;
 			this.length = length;
-			this.cost = cost;
+//			this.cost = cost;
 		}
-		public DigitalVideoDisc(String title) {
-			super();
-			nbMedia++;
-			this.id = nbMedia;
-			this.title = title;
-		}
-		public DigitalVideoDisc(String title, String category, float cost) {
-			super();
-			nbMedia++;
-			this.id = nbMedia;
-			this.title = title;
-			this.category = category;
-			this.cost = cost;
-		}
-		public DigitalVideoDisc(String title, String category, String director, float cost) {
-			super();
-			nbMedia++;
-			this.id = nbMedia;
-			this.title = title;
-			this.category = category;
-			this.director = director;
-			this.cost = cost;
-		}
+//		public DigitalVideoDisc(String title) {
+//			super();
+//			nbMedia++;
+//			this.id = nbMedia;
+//			this.title = title;
+//		}
+//		public DigitalVideoDisc(String title, String category, float cost) {
+//			super();
+//			nbMedia++;
+//			this.id = nbMedia;
+//			this.title = title;
+//			this.category = category;
+//			this.cost = cost;
+//		}
+//		public DigitalVideoDisc(String title, String category, String director, float cost) {
+//			super();
+//			nbMedia++;
+//			this.id = nbMedia;
+//			this.title = title;
+//			this.category = category;
+//			this.director = director;
+//			this.cost = cost;
+//		}
 		public boolean search2(String title) {
 			 return (this.title).indexOf(title) > -1;
 		}
@@ -71,6 +71,10 @@ public class DigitalVideoDisc extends Disc {
 			}
 			return false;
 		}
+		
+		public void play() {
+			System.out.println("Playing DVD: " + this.getTitle());
+			System.out.println("DVD length: " + this.getLength()); }
 		
 		
 }

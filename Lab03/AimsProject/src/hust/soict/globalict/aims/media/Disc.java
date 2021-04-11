@@ -1,10 +1,10 @@
 package hust.soict.globalict.aims.media;
 
-import java.time.LocalDate;
 
-public class Disc extends Media {
+public abstract class Disc extends Media {
 	private String director;
 	private int length;
+	public abstract void play();
 	public String getDirector() {
 		return director;
 	}
@@ -17,8 +17,8 @@ public class Disc extends Media {
 		this.length = length;
 	}
 
-	public Disc(int id, String title, String category, float cost, LocalDate addDate) {
-		super(id, title, category, cost, addDate);
+	public Disc( String title, String category, float cost) {
+		super( title, category, cost);
 	}
 
 }
