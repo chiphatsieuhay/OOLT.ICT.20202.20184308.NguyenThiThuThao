@@ -1,23 +1,29 @@
 package hust.soict.globalict.aims.media;
 
 public class Track implements Playable{
-	private String director;
+	private String title;
 	private int length;
-	public String getDirector() {
-		return director;
+	public String getTitle() {
+		return title;
 	}
 	public int getLength() {
 		return length;
 	}
-	public Track(String director, int length) {
+	public Track(String title, int length) {
 		super();
-		this.director = director;
+		this.title = title;
 		this.length = length;
 	}
 	@Override
 	public void play() {
 		// TODO Auto-generated method stub
-		System.out.println("Playing DVD: " + this.getDirector());
+		System.out.println("Playing DVD: " + this.getTitle());
 		System.out.println("DVD length: " + this.getLength());
+	}
+	public boolean equals(Object o) {
+		if (o instanceof Track) {
+			return (this.title == ((Track) o).getTitle() && this.length == ((Track) o).getLength());
+		}
+		else return false;
 	}
 }

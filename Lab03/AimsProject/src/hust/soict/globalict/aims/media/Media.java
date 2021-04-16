@@ -48,6 +48,14 @@ public abstract class Media {
 //	public Media(boolean isAdd ) {
 //		
 //	};
+	
+
+	public boolean equals(Object o) {
+		if (o instanceof Media) {
+			return this.id == ((Media) o).getId();
+		}
+		else return false;
+	}
 	public Media( String title, String category, float cost) {
 		this.nbMedia++;
 		this.id = nbMedia;

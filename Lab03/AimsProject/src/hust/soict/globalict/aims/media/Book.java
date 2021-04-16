@@ -5,13 +5,8 @@ import java.util.List;
 
 public class Book extends Media {
 	private List<String> authors = new ArrayList<String>();
-	public Book(int id, String title, String category, float cost, List<String> authors) {
-		super();
-		nbMedia++;
-		this.id = nbMedia;
-		this.title = title;
-		this.category = category;
-		this.cost = cost;
+	public Book( String title, String category, float cost, List<String> authors) {
+		super(title,category,cost);
 		this.authors = authors;
 	}
 	public List<String> getAuthors() {
@@ -40,5 +35,10 @@ public class Book extends Media {
 		}
 		System.out.println("cant delete");
 		return false;
+	}
+	@Override
+	public void play() {
+		// TODO Auto-generated method stub
+		
 	}
 }
