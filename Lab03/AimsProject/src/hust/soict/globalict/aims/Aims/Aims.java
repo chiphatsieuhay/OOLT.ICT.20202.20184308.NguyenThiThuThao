@@ -347,7 +347,7 @@ public class Aims {
 		authors.add("Thao");
 		authors.add("Chipp");
 		authors.add("Cross");
-		Book Book1 = new Book("Wars", "Story", 30f, authors);
+		Book Book1 = new Book("Wars", "Story", 30f, authors,"i can can the can. But you, see you");
 		
 		List<Media> mediae = new ArrayList<Media>();
 		mediae.add(dvd1);
