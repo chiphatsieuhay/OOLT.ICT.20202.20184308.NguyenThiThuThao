@@ -1,7 +1,10 @@
 
-package hust.soict.globalict.aims.media;
+package hust.soict.globalict.aims.disc.children;
 
 import java.time.LocalDate;
+
+import hust.soict.globalict.aims.Interface.Playable;
+import hust.soict.globalict.aims.media.children.Disc;
 
 public class DigitalVideoDisc extends Disc implements Playable{
 		private String director;
@@ -75,6 +78,8 @@ public class DigitalVideoDisc extends Disc implements Playable{
 		public void play() {
 			System.out.println("Playing DVD: " + this.getTitle());
 			System.out.println("DVD length: " + this.getLength()); }
+
+
 		
 		
 }

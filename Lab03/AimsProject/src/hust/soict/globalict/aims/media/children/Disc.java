@@ -1,5 +1,6 @@
-package hust.soict.globalict.aims.media;
+package hust.soict.globalict.aims.media.children;
 
+import hust.soict.globalict.aims.media.Media;
 
 public abstract class Disc extends Media {
 	private String director;

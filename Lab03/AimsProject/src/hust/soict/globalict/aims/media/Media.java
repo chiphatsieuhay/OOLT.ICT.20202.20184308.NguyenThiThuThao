@@ -1,19 +1,30 @@
 package hust.soict.globalict.aims.media;
 
 import java.time.LocalDate;
+
+
 import java.util.Comparator;
 
-public abstract class Media {
+import hust.soict.globalict.aims.disc.children.CompactDisc;
+import hust.soict.globalict.comparators.MediaComparatorByCostTitle;
+import hust.soict.globalict.comparators.MediaComparatorByTitleCost;
+public abstract class Media implements Comparable<Media> {
 	public void setCost(float cost) {
 		this.cost = cost;
 	}
-	public abstract void play();
+	//public abstract void play();
 	protected int id;
 	protected String title;
 	protected String category;
 	protected float cost;
 	protected static int nbMedia = 0;
 	private LocalDate addDate;
+	
+	
+	public static final Comparator<Media> COMPARE_BY_TITLE_COST = new MediaComparatorByTitleCost();
+	public static final Comparator<Media> COMPARE_BY_COST_TITLE = new MediaComparatorByCostTitle();
+	
+	
 	public int getId() {
 		return id;
 	}
@@ -65,5 +76,21 @@ public abstract class Media {
 		this.addDate = LocalDate.now();
 		
 	}
+	@Override
+	public int compareTo(Media o) {
+		// TODO Auto-generated method stub
+		//System.out.println("We are comparing "+o.getTitle()+"with"+this.title);
+		int i =  this.title.compareTo(o.getTitle());
+		if (i != 0) return i;
+		i =(int) ( o.getCost() - this.cost);    
+	    if (i != 0) return i;
+	    
+	    return i = this.category.compareTo(o.getCategory());
+	   
+		//return 0;
+	}
+	
+	
+	
 	
 }

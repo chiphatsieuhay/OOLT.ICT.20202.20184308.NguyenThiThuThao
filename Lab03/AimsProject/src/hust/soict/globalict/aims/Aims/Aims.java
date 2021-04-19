@@ -3,11 +3,18 @@ package hust.soict.globalict.aims.Aims;
 import hust.soict.globalict.MemoryDaemon.MemoryDaemon;
 import hust.soict.globalict.aims.Store;
 import hust.soict.globalict.aims.cart.Cart.Cart;
-import hust.soict.globalict.aims.media.DigitalVideoDisc;
+import hust.soict.globalict.aims.disc.children.CompactDisc;
+import hust.soict.globalict.aims.disc.children.DigitalVideoDisc;
+import hust.soict.globalict.aims.media.Media;
+import hust.soict.globalict.aims.media.Track;
+import hust.soict.globalict.aims.media.children.Book;
+import hust.soict.globalict.aims.media.children.Disc;
 import hust.soict.globalict.aims.utils.DVDUtils.DVDUtils;
 
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collections;
+import java.util.List;
 import java.util.Scanner;
 
 
@@ -54,7 +61,7 @@ public class Aims {
 			int sort = keyboard.nextInt();
 			if (sort == 1) {
 
-				Collections.sort(anOrder.itemsOrdered,Cart.MediaComparatorCost);
+				Collections.sort(anOrder.itemsOrdered, Media.COMPARE_BY_COST_TITLE);
 				System.out.println("DVD - [Title] - [category] - [Director] - [Length]: [Price] $");
 				for (int i=0; i< anOrder.itemsOrdered.size();i++) {
 					anOrder.itemsOrdered.get(i).getDetail();
@@ -63,7 +70,7 @@ public class Aims {
 			}else if (sort == 2 ) {
 				int qty=0;
 				
-				Collections.sort(anOrder.itemsOrdered,Cart.MediaComparatorTitle);
+				Collections.sort(anOrder.itemsOrdered,Media.COMPARE_BY_TITLE_COST);
 				System.out.println("DVD - [Title] - [category] - [Director] - [Length]: [Price] $");
 				for (int i=0; i< anOrder.itemsOrdered.size();i++) {
 					anOrder.itemsOrdered.get(i).getDetail();
@@ -105,14 +112,21 @@ public class Aims {
 		int id = keyboard.nextInt();
 		for(int i = 0;i < Store.itemsInStore.size();i++) {
 			if (id == Store.itemsInStore.get(i).getId()) {
-				Store.itemsInStore.get(i).play();
-				return;
+				if (Store.itemsInStore.get(i) instanceof Disc) {
+					Disc b = (Disc) Store.itemsInStore.get(i);
+					
+					b.play();
+					return;
+				}else {
+					System.out.println("Can not play this type of Media");
+				}
+				
 			}
 		} 
 		System.out.println("Id not existed");
 	}
 	public static void playMedia(Cart anOrder) {
-		Collections.sort(anOrder.itemsOrdered,Cart.MediaComparatorCost);
+		Collections.sort(anOrder.itemsOrdered,Media.COMPARE_BY_TITLE_COST);
 		System.out.println("DVD - [Title] - [category] - [Director] - [Length]: [Price] $");
 		for (int i=0; i< anOrder.itemsOrdered.size();i++) {
 			anOrder.itemsOrdered.get(i).getDetail();
@@ -122,8 +136,15 @@ public class Aims {
 		int id = keyboard.nextInt();
 		for (int i=0; i< anOrder.itemsOrdered.size();i++) {
 			if (id == anOrder.itemsOrdered.get(i).getId()) {
-				anOrder.itemsOrdered.get(i).play();
-				return;
+				if (anOrder.itemsOrdered.get(i) instanceof Disc) {
+					Disc b = (Disc) anOrder.itemsOrdered.get(i);
+					
+					b.play();
+					return;
+				}else {
+					System.out.println("Can not play this type of Media");
+				}
+			
 			}
 		} 
 		System.out.println("Id not existed");
@@ -270,10 +291,10 @@ public class Aims {
 	public static void main(String[] args)throws InterruptedException {
 		Cart anOrder = new Cart();
 		
-		
+		Store Store = new Store();
 		
 		//add dvd to Store
-		Store Store = new Store();
+		
 		DigitalVideoDisc dvd1 = new DigitalVideoDisc("The Lion King","Animation","Roger Allers",87,19.95f);
 		Store.addMedia(dvd1);
 		
@@ -286,9 +307,57 @@ public class Aims {
 		Store.addMedia(dvd4);
 		DigitalVideoDisc dvd5 = new DigitalVideoDisc("Bo gia","Comedy","Tran Thanh",90,10f);
 		
-		
+		DigitalVideoDisc dvd6 = new DigitalVideoDisc("Aladin","Animationn","Blabloo",1977,12.5f);
 		
 		Store.addMedia(dvd5);
+		Store.addMedia(dvd6);
+		
+		
+		
+		//add compactDisc
+		List<Track> Track1 = new ArrayList<Track>();
+		Track Trackx = new Track("Song1: Leave the door open", 26);
+		Track1.add(Trackx);
+		Trackx = new Track("Song2: Leave the door open", 15);
+		Track1.add(Trackx);
+		Trackx = new Track("Song3: Leave the door open", 20);
+		Track1.add(Trackx);
+		Trackx = new Track("Song4: Leave the door open", 20);
+		Track1.add(Trackx);
+		
+		CompactDisc disc1 = new CompactDisc("Leave the door open","Ballad",12.5f,"Bruno Mars",Track1);
+		
+		List<Track> Track2 = new ArrayList<Track>();
+		Track Trackx2 = new Track("Song1: 2002", 26);
+		Track2.add(Trackx2);
+		Trackx2 = new Track("Song2: 2002", 15);
+		Track2.add(Trackx2);
+		Trackx2 = new Track("Song3: 2002", 20);
+		Track2.add(Trackx2);
+		Trackx2 = new Track("Song4: 2002", 20);
+		Track2.add(Trackx2);
+		
+		CompactDisc disc2 = new CompactDisc("2002","Ballad",12.5f,"Anne",Track2);
+		Store.addMedia(disc1);
+		Store.addMedia(disc2);
+		
+		
+		//add book
+		List<String> authors = new ArrayList<String>();
+		authors.add("Thao");
+		authors.add("Chipp");
+		authors.add("Cross");
+		Book Book1 = new Book("Wars", "Story", 30f, authors);
+		
+		List<Media> mediae = new ArrayList<Media>();
+		mediae.add(dvd1);
+		mediae.add(disc1);
+		mediae.add(Book1);
+		System.out.println("\nMedia to string\n");
+		
+		for( Media m :mediae) {
+			m.toString();
+		}
 		
 		System.out.println("\n-------------------------------------\n");
 		

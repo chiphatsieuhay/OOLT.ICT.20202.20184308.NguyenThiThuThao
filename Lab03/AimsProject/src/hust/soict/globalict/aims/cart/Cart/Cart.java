@@ -26,32 +26,32 @@ public class Cart {
 		
 		
 	}
-	public static Comparator<Media> MediaComparatorCost = new Comparator<Media>() {
-
-		public int compare(Media s1, Media s2) {
-
-		   float rollno1 = s1.getCost();
-		   float rollno2 = s2.getCost();
-
-		   /*For ascending order*/
-		   return (int) (rollno1-rollno2);
-
-		   /*For descending order*/
-		   //rollno2-rollno1;
-	   }};
-	 public static Comparator<Media> MediaComparatorTitle = new Comparator<Media>() {
-		 
-		 
-			public int compare(Media s1, Media s2) {
-			   String MediaName1 = s1.getTitle().toUpperCase();
-			   String MediaName2 = s2.getTitle().toUpperCase();
-
-			   //ascending order
-			   return MediaName1.compareTo(MediaName2);
-
-			   //descending order
-			   //return StudentName2.compareTo(StudentName1);
-		    }};
+//	public static Comparator<Media> MediaComparatorCost = new Comparator<Media>() {
+//
+//		public int compare(Media s1, Media s2) {
+//
+//		   float rollno1 = s1.getCost();
+//		   float rollno2 = s2.getCost();
+//
+//		   /*For ascending order*/
+//		   return (int) (rollno1-rollno2);
+//
+//		   /*For descending order*/
+//		   //rollno2-rollno1;
+//	   }};
+//	 public static Comparator<Media> MediaComparatorTitle = new Comparator<Media>() {
+//		 
+//		 
+//			public int compare(Media s1, Media s2) {
+//			   String MediaName1 = s1.getTitle().toUpperCase();
+//			   String MediaName2 = s2.getTitle().toUpperCase();
+//
+//			   //ascending order
+//			   return MediaName1.compareTo(MediaName2);
+//
+//			   //descending order
+//			   //return StudentName2.compareTo(StudentName1);
+//		    }};
 	public Media searchById(int id) {
 		for (int i = 0;i < itemsOrdered.size();i++) {
 			if (id == itemsOrdered.get(i).getId() ) {

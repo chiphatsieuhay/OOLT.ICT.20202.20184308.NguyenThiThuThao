@@ -1,7 +1,7 @@
 package hust.soict.globalict.test.cart.CartTest;
 
 import hust.soict.globalict.aims.cart.Cart.Cart;
-import hust.soict.globalict.aims.media.DigitalVideoDisc;
+import hust.soict.globalict.aims.disc.children.DigitalVideoDisc;
 import hust.soict.globalict.aims.utils.DVDUtils.DVDUtils;
 
 public class CartTest {

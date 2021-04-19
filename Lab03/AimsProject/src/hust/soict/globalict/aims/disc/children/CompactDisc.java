@@ -1,8 +1,12 @@
-package hust.soict.globalict.aims.media;
+package hust.soict.globalict.aims.disc.children;
 
 
 import java.util.ArrayList;
 import java.util.List;
+
+import hust.soict.globalict.aims.Interface.Playable;
+import hust.soict.globalict.aims.media.Track;
+import hust.soict.globalict.aims.media.children.Disc;
 
 public class CompactDisc extends Disc implements Playable{
 	
@@ -55,8 +59,10 @@ public class CompactDisc extends Disc implements Playable{
 		}
 		return sum;
 		}
-	public CompactDisc( String title, String category, float cost) {
+	public CompactDisc( String title, String category, float cost, String artist,List<Track> Track) {
 		super( title, category, cost);
+		this.artist = artist;
+		this.Track = Track;
 		
 	}
 	@Override
@@ -67,4 +73,5 @@ public class CompactDisc extends Disc implements Playable{
 		}
 		
 	}
+
 }
