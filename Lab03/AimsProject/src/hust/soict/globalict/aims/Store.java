@@ -20,6 +20,9 @@ public class Store {
 		System.out.println("media did not exist");
 		return -1;
 	}
+	public ArrayList<Media> getItemsInStore() {
+		return itemsInStore;
+	}
 	public void MediaInfo(Media media) {
 		System.out.print(media.getId()+"\t"+media.getTitle()+"\t"+media.getCategory()+"\t"+media.getCost()+"\n");
 	}

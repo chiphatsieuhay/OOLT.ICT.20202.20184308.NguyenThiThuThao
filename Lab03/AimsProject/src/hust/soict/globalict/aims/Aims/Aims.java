@@ -9,6 +9,8 @@ import hust.soict.globalict.aims.media.Media;
 import hust.soict.globalict.aims.media.Track;
 import hust.soict.globalict.aims.media.children.Book;
 import hust.soict.globalict.aims.media.children.Disc;
+import hust.soict.globalict.aims.screen.AddBookToStoreScreen;
+import hust.soict.globalict.aims.screen.StoreScreen;
 import hust.soict.globalict.aims.utils.DVDUtils.DVDUtils;
 
 import java.util.ArrayList;
@@ -204,6 +206,9 @@ public class Aims {
 	public static void showCart(Cart anOrder) {
 		anOrder.showCart();
 	}
+	public void toStoreScreen() {
+		
+	}
 	public static void updateStore(Store Store,Cart anOrder) {
 		System.out.println("Press 1 to remove, 0 to add -1 to exit:");
 		Scanner keyboard = new Scanner(System.in);
@@ -301,18 +306,25 @@ public class Aims {
 		DigitalVideoDisc dvd2 = new DigitalVideoDisc("Star Wars","Science Fiction","George Lucas",87,24.95f);
 		Store.addMedia(dvd2);
 		DigitalVideoDisc dvd3 = new DigitalVideoDisc("Aladin","Animation","Blablo",197,18.99f);
-		Store.addMedia(dvd3);
+//		Store.addMedia(dvd3);
 		
 		DigitalVideoDisc dvd4 = new DigitalVideoDisc("Aladinn","Animation","ximaxo",817,181.99f);
-		Store.addMedia(dvd4);
+//		Store.addMedia(dvd4);
 		DigitalVideoDisc dvd5 = new DigitalVideoDisc("Bo gia","Comedy","Tran Thanh",90,10f);
 		
 		DigitalVideoDisc dvd6 = new DigitalVideoDisc("Aladin","Animationn","Blabloo",1977,12.5f);
+		DigitalVideoDisc dvd7 = new DigitalVideoDisc("What is love","Romance","Blabloo",1977,12.5f);
+		DigitalVideoDisc dvd8 = new DigitalVideoDisc("Taste of love","Romance","Blabloo",197,12.5f);
+		DigitalVideoDisc dvd9 = new DigitalVideoDisc("Instagram","Animationn","Blabloo",977,12.5f);
+		DigitalVideoDisc dvd10 = new DigitalVideoDisc("take to moon","hihii","Blabloo",1977,12.5f);
 		
 		Store.addMedia(dvd5);
-		Store.addMedia(dvd6);
-		
-		
+//		Store.addMedia(dvd6);
+		Store.addMedia(dvd7);
+		Store.addMedia(dvd8);
+//		Store.addMedia(dvd9);
+//		Store.addMedia(dvd10);
+//		
 		
 		//add compactDisc
 		List<Track> Track1 = new ArrayList<Track>();
@@ -344,23 +356,23 @@ public class Aims {
 		
 		//add book
 		List<String> authors = new ArrayList<String>();
+		List<String> authors1 = new ArrayList<String>();
 		authors.add("Thao");
 		authors.add("Chipp");
 		authors.add("Cross");
+		authors1.add("Thao");
+		authors1.add("Chipp");
+		authors1.add("Cross");
 		Book Book1 = new Book("Wars", "Story", 30f, authors,"i can can the can. But you, see you");
+		Book Book2 = new Book("Take it slow", "Fanfic", 30f, authors,"Cha eun woo is for life");
 		
-		List<Media> mediae = new ArrayList<Media>();
-		mediae.add(dvd1);
-		mediae.add(disc1);
-		mediae.add(Book1);
-		System.out.println("\nMedia to string\n");
 		
-		for( Media m :mediae) {
-			m.toString();
-		}
 		
-		System.out.println("\n-------------------------------------\n");
+		Store.addMedia(Book1);
+		Store.addMedia(Book2);
 		
+		
+		StoreScreen storeScreen = new StoreScreen(Store);
 		
 		 Thread dt = new Thread(new MemoryDaemon());
 	     dt.setDaemon(true);
@@ -368,7 +380,7 @@ public class Aims {
 		
 		switchshowMenu(Store,anOrder);
 		
-
+		
 	}
 
 }
