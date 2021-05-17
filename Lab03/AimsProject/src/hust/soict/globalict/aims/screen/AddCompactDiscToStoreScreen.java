@@ -20,15 +20,17 @@ import javax.swing.JMenuItem;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
 
+import hust.soict.globalict.aims.cart.Cart.Cart;
 import hust.soict.globalict.aims.disc.children.CompactDisc;
 import hust.soict.globalict.aims.media.children.Book;
 
 public class AddCompactDiscToStoreScreen extends  AddItemToStoreScreen {
 	private CompactDisc compactDisc;
-	public AddCompactDiscToStoreScreen() {
-		super("add CD");
+	private Cart cart;
+	public AddCompactDiscToStoreScreen(Cart cart) {
+		super("add CD",cart);
 		//this.compactDisc= compactDisc;
-		
+		this.cart = cart;
 		
 		
 	}

@@ -20,11 +20,13 @@ import javax.swing.JMenuBar;
 import javax.swing.JMenuItem;
 import javax.swing.JPanel;
 
+import hust.soict.globalict.aims.cart.Cart.Cart;
+
 
 public abstract class AddItemToStoreScreen extends JFrame{
-	
-	public AddItemToStoreScreen(String title)  {
-		
+	private Cart cart;
+	public AddItemToStoreScreen(String title,Cart cart)  {
+		this.cart = cart;
 		Container cp = getContentPane();
 		cp.setLayout(new BorderLayout());
 		
@@ -84,7 +86,9 @@ public abstract class AddItemToStoreScreen extends JFrame{
 		addDVD.addActionListener(itemActionListener);
 		menu.add(smUpdateStore);
 		menu.add(new JMenuItem("View Store"));
-		menu.add(new JMenuItem("View Cart"));
+		JMenuItem viewCart = new JMenuItem("View Cart");
+		menu.add(viewCart);
+		viewCart.addActionListener(itemActionListener);
 		
 		JMenuBar menuBar = new JMenuBar();
 		menuBar.setLayout(new FlowLayout(FlowLayout.LEFT));
@@ -102,11 +106,13 @@ public abstract class AddItemToStoreScreen extends JFrame{
 			String button = e.getActionCommand();
 			if (button.equals("Add Book")) {
 				System.out.println("add book");
-				new AddBookToStoreScreen();
+				new AddBookToStoreScreen(cart);
 			}else if (button.equals("Add CD")) {
-				new AddCompactDiscToStoreScreen();
+				new AddCompactDiscToStoreScreen(cart);
 			}else if (button.equals("Add DVD")) {
-				new AddDigitalVideoDiscToStoreScreen();
+				new AddDigitalVideoDiscToStoreScreen(cart);
+			}else if (button.equals("View Cart")){
+				new CartScreen(cart);
 			}
 			
 		}

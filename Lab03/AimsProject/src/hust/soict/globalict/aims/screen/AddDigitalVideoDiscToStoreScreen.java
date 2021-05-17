@@ -6,13 +6,17 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
 
+import hust.soict.globalict.aims.cart.Cart.Cart;
 import hust.soict.globalict.aims.disc.children.CompactDisc;
 import hust.soict.globalict.aims.disc.children.DigitalVideoDisc;
 
 public class AddDigitalVideoDiscToStoreScreen extends  AddItemToStoreScreen {
 	private DigitalVideoDisc dvd;
-	public AddDigitalVideoDiscToStoreScreen() {
-		super("add CD");
+	private Cart cart;
+	public AddDigitalVideoDiscToStoreScreen(Cart cart) {
+		
+		super("add CD",cart);
+		this.cart = cart;
 	//	this.dvd= dvd;
 		
 		

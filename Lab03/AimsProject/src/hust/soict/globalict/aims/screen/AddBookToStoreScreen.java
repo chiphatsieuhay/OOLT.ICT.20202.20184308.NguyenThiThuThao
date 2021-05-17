@@ -20,16 +20,18 @@ import javax.swing.JMenuItem;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
 
+import hust.soict.globalict.aims.cart.Cart.Cart;
 import hust.soict.globalict.aims.media.Media;
 import hust.soict.globalict.aims.media.children.Book;
 
 
 public class AddBookToStoreScreen extends AddItemToStoreScreen{
 	private Book book;
-	public AddBookToStoreScreen() {
-		super("add Book");
+	private Cart cart;
+	public AddBookToStoreScreen(Cart cart) {
+		super("add Book",cart);
 		//this.book= book;
-		
+		this.cart =cart;
 	}
 	@Override
 	public JPanel createCenter() {

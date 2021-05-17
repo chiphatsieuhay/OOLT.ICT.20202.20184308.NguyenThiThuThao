@@ -17,6 +17,16 @@
          </BorderPane.margin>
          <children>
             <Button maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#clearButtonPressed" text="Clear" />
+            <TitledPane animated="false" text="untitled">
+              <content>
+                <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+                     <children>
+                        <RadioButton fx:id="penRadio" layoutY="5.0" mnemonicParsing="false" onAction="#checkPen" text="pen" />
+                        <RadioButton fx:id="EraserRadio" layoutY="32.0" mnemonicParsing="false" onAction="#checkEraser" text="Eraser" />
+                     </children>
+                  </AnchorPane>
+              </content>
+            </TitledPane>
          </children>
       </VBox>
    </left>

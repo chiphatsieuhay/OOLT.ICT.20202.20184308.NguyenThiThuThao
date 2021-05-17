@@ -10,6 +10,7 @@ import hust.soict.globalict.aims.media.Track;
 import hust.soict.globalict.aims.media.children.Book;
 import hust.soict.globalict.aims.media.children.Disc;
 import hust.soict.globalict.aims.screen.AddBookToStoreScreen;
+import hust.soict.globalict.aims.screen.CartScreen;
 import hust.soict.globalict.aims.screen.StoreScreen;
 import hust.soict.globalict.aims.utils.DVDUtils.DVDUtils;
 
@@ -368,11 +369,17 @@ public class Aims {
 		
 		
 		
+		
 		Store.addMedia(Book1);
 		Store.addMedia(Book2);
 		
 		
-		StoreScreen storeScreen = new StoreScreen(Store);
+		StoreScreen storeScreen = new StoreScreen(Store,anOrder);
+		//test cart screen
+//		anOrder.addMedia(Store.itemsInStore.get(2));
+//		anOrder.addMedia(Store.itemsInStore.get(3));
+//		anOrder.addMedia(Store.itemsInStore.get(4));
+//		new ;
 		
 		 Thread dt = new Thread(new MemoryDaemon());
 	     dt.setDaemon(true);

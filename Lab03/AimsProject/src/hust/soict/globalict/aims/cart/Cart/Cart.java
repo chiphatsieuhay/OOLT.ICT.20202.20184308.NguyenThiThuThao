@@ -1,16 +1,20 @@
 package hust.soict.globalict.aims.cart.Cart;
 
 import hust.soict.globalict.aims.media.Media;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 
-import java.util.ArrayList;
-import java.util.Comparator;
+
 
 
 public class Cart {
 	public static final int MAX_NUMBERS_ORDERED = 20;
-	public ArrayList<Media> itemsOrdered = new
-			ArrayList<Media>();
-
+//	public ArrayList<Media> itemsOrdered = new
+//			ArrayList<Media>();
+	public ObservableList<Media> itemsOrdered =FXCollections.observableArrayList();
+	public ObservableList<Media> getItemsOrdered() {
+		return itemsOrdered;
+	}
 	public void searchforDVDsByTitle(String title) {
 		int a =0;
 		for (int i = 0;i < itemsOrdered.size();i++) {
@@ -113,9 +117,12 @@ public class Cart {
 
    
 	public void showCart() {
+		float cost=0;
 		for(int i = 0;i < itemsOrdered.size();i++) {
 			itemsOrdered.get(i).getDetail();
+			cost = cost + itemsOrdered.get(i).getCost();
 		}
+		System.out.print("totalcost"+cost);
 	}
 	public float totalCost() {
 		float cost=0;

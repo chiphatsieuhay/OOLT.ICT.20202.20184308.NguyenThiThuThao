@@ -17,13 +17,15 @@ import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 
 import hust.soict.globalict.aims.Interface.Playable;
+import hust.soict.globalict.aims.cart.Cart.Cart;
 import hust.soict.globalict.aims.media.Media;
 
 public class MediaScreen extends JPanel{
 	private Media media;
-	
-	public MediaScreen(Media media) {
+	private Cart cart;
+	public MediaScreen(Media media,Cart cart) {
 		this.media = media;
+		this.cart =cart;
 		this.setLayout(new BoxLayout(this, BoxLayout.Y_AXIS));
 		
 		JLabel title = new JLabel(media.getTitle());
@@ -66,6 +68,7 @@ public class MediaScreen extends JPanel{
 			System.out.println("action tap");
 			String button = e.getActionCommand();
 			if (button.equals("Add to cart")) {
+				cart.addMedia(media);
 				new AddToCart();  
 			}else if (button.equals("Play")) {
 				new Play();
