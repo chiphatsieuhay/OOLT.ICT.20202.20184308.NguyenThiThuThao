@@ -2,7 +2,11 @@ package hust.soict.globalict.aims.media;
 
 import java.util.List;
 
+import javax.swing.JFrame;
+import javax.swing.JOptionPane;
+
 import hust.soict.globalict.aims.Interface.Playable;
+import hust.soict.globalict.aims.exception.PlayerException;
 
 public class Track implements Playable,Comparable<Track>{
 	private String title;
@@ -19,10 +23,20 @@ public class Track implements Playable,Comparable<Track>{
 		this.length = length;
 	}
 	@Override
-	public void play() {
+	public void play() throws PlayerException{
 		// TODO Auto-generated method stub
-		System.out.println("Playing DVD: " + this.getTitle());
-		System.out.println("DVD length: " + this.getLength());
+		if(this.getLength()>0) {
+			System.out.println("Playing DVD: " + this.getTitle());
+			System.out.println("DVD length: " + this.getLength());
+			JFrame f;  
+			f=new JFrame();  
+			JOptionPane.showMessageDialog(f,"Playing.");  
+			 
+		}else {
+			throw new PlayerException();
+		}
+		
+		
 	}
 	public boolean equals(Object o) {
 		if (o instanceof Track) {

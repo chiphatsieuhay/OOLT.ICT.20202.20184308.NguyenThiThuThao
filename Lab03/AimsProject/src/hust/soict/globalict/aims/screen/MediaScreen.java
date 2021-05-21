@@ -18,6 +18,7 @@ import javax.swing.JPanel;
 
 import hust.soict.globalict.aims.Interface.Playable;
 import hust.soict.globalict.aims.cart.Cart.Cart;
+import hust.soict.globalict.aims.exception.PlayerException;
 import hust.soict.globalict.aims.media.Media;
 
 public class MediaScreen extends JPanel{
@@ -45,6 +46,7 @@ public class MediaScreen extends JPanel{
 		addToCart.addActionListener(btnListener);
 		
 		if (media instanceof Playable) {
+			
 			JButton play = new JButton("Play");
 			container.add(play);
 			play.addActionListener(btnListener);
@@ -71,7 +73,15 @@ public class MediaScreen extends JPanel{
 				cart.addMedia(media);
 				new AddToCart();  
 			}else if (button.equals("Play")) {
-				new Play();
+				if (media instanceof Playable) {
+					try {
+						((Playable) media).play();
+					} catch (PlayerException e1) {
+						// TODO Auto-generated catch block
+						e1.printStackTrace();
+					}
+				}
+			//	new Play();
 			}
 			
 		}
@@ -86,11 +96,7 @@ public class MediaScreen extends JPanel{
 	
 	}
 	public class Play {  
-		JFrame f;  
-		Play(){  
-		    f=new JFrame();  
-		    JOptionPane.showMessageDialog(f,"Playing.");  
-		}  
+		
 	
 	}
 }

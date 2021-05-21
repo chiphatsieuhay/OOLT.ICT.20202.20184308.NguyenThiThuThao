@@ -1,11 +1,12 @@
 package hust.soict.globalict.aims.media.children;
 
+import hust.soict.globalict.aims.exception.PlayerException;
 import hust.soict.globalict.aims.media.Media;
 
 public abstract class Disc extends Media {
 	private String director;
 	private int length;
-	public abstract void play();
+	
 	public String getDirector() {
 		return director;
 	}

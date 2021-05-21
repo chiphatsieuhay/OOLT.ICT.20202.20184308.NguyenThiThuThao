@@ -7,6 +7,7 @@ import javax.swing.JOptionPane;
 
 import hust.soict.globalict.aims.Interface.Playable;
 import hust.soict.globalict.aims.cart.Cart.Cart;
+import hust.soict.globalict.aims.exception.PlayerException;
 import hust.soict.globalict.aims.media.Media;
 import hust.soict.globalict.aims.screen.MediaScreen.Play;
 import javafx.beans.value.ChangeListener;
@@ -68,8 +69,13 @@ public class CartScreenController {
 	}
 	
 	@FXML
-	void btnPlayPressed(ActionEvent event) {
-		new Play();
+	void btnPlayPressed(ActionEvent event) throws PlayerException {
+		//new Play();
+		Media media = tblMedia.getSelectionModel().getSelectedItem();
+		if (media instanceof Playable) {
+			((Playable) media).play();
+		}
+		
 	}
 	
 	@FXML
@@ -98,14 +104,7 @@ public class CartScreenController {
 	}
 	
 	
-	public class Play {  
-		JFrame f;  
-		Play(){  
-		    f=new JFrame();  
-		    JOptionPane.showMessageDialog(f,"Playing.");  
-		}  
 	
-	}
 	
 	@FXML
 	private void initialize() {

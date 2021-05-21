@@ -3,7 +3,11 @@ package hust.soict.globalict.aims.disc.children;
 
 import java.time.LocalDate;
 
+import javax.swing.JFrame;
+import javax.swing.JOptionPane;
+
 import hust.soict.globalict.aims.Interface.Playable;
+import hust.soict.globalict.aims.exception.PlayerException;
 import hust.soict.globalict.aims.media.children.Disc;
 
 public class DigitalVideoDisc extends Disc implements Playable{
@@ -75,11 +79,21 @@ public class DigitalVideoDisc extends Disc implements Playable{
 			return false;
 		}
 		
-		public void play() {
-			System.out.println("Playing DVD: " + this.getTitle());
-			System.out.println("DVD length: " + this.getLength()); }
+		public void play() throws PlayerException{
+			if(this.getLength()>0){
+				System.out.println("Playing DVD: " + this.getTitle());
+				System.out.println("DVD length: " + this.getLength()); 
+				
+				JFrame f;  
+				f=new JFrame();  
+				JOptionPane.showMessageDialog(f,"Playing.");  
+			}else {
+				throw new PlayerException();
+			}
+			
+		}
 
-
+		
 		
 		
 }
