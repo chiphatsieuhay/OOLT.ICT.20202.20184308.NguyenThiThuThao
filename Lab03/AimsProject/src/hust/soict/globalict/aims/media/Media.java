@@ -62,10 +62,20 @@ public abstract class Media implements Comparable<Media> {
 	
 
 	public boolean equals(Object o) {
-		if (o instanceof Media) {
-			return this.id == ((Media) o).getId();
+		try {
+			if (o instanceof Media) {
+				return this.title == ((Media) o).getTitle() && this.cost == ((Media) o).getCost() ;
+			}
+			else return false;
 		}
-		else return false;
+		catch(NullPointerException nul) {
+			System.out.print("this field not found");
+			return false;
+		}catch(ClassCastException cl) {
+			System.out.print(cl.getMessage());
+			return false;
+		}
+		
 	}
 	public Media( String title, String category, float cost) {
 		this.nbMedia++;
@@ -80,12 +90,18 @@ public abstract class Media implements Comparable<Media> {
 	public int compareTo(Media o) {
 		// TODO Auto-generated method stub
 		//System.out.println("We are comparing "+o.getTitle()+"with"+this.title);
-		int i =  this.title.compareTo(o.getTitle());
-		if (i != 0) return i;
-		i =(int) ( o.getCost() - this.cost);    
-	    if (i != 0) return i;
-	    
-	    return i = this.category.compareTo(o.getCategory());
+		try {
+			int i =  this.title.compareTo(o.getTitle());
+			if (i != 0) return i;
+			i =(int) ( o.getCost() - this.cost);    
+		    if (i != 0) return i;
+		    
+		    return i = this.category.compareTo(o.getCategory());
+		}catch(Exception e) {
+			System.out.print(e.getMessage());
+			return 0;
+		}
+		
 	   
 		//return 0;
 	}

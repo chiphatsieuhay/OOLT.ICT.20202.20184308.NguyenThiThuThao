@@ -68,7 +68,22 @@ public class Cart {
 	}
 
 	public Media getALuckyItem() {
-        return itemsOrdered.get((int) (Math.random() * itemsOrdered.size()));
+		try {
+			if (totalCost()>=100 && itemsOrdered.size()>=3) {
+				Media m;
+				do {
+					m=itemsOrdered.get((int) (Math.random() * itemsOrdered.size()));
+				} 
+				while(m.getCost()>=totalCost()/3);
+				return m;
+			}else {
+				System.out.println("Cant not have lucky cause your order ");
+				return null;
+			}
+		}catch(Exception e) {
+			return null;
+		}
+        
     }
 
     public void clearCart() {

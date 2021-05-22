@@ -33,7 +33,7 @@ public class Track implements Playable,Comparable<Track>{
 			JOptionPane.showMessageDialog(f,"Playing.");  
 			 
 		}else {
-			throw new PlayerException();
+			throw new PlayerException("ERROR:DVD length is non-positive");
 		}
 		
 		

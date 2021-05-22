@@ -4,7 +4,11 @@ package hust.soict.globalict.aims.disc.children;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.swing.JFrame;
+import javax.swing.JOptionPane;
+
 import hust.soict.globalict.aims.Interface.Playable;
+import hust.soict.globalict.aims.exception.PlayerException;
 import hust.soict.globalict.aims.media.Track;
 import hust.soict.globalict.aims.media.children.Disc;
 
@@ -66,11 +70,28 @@ public class CompactDisc extends Disc implements Playable{
 		
 	}
 	@Override
-	public void play() {
+	public void play() throws PlayerException{
 		// TODO Auto-generated method stub
-		for (int i = 0;i < Track.size();i++) {
-			Track.get(i).play();
+		if (this.getLength()>0) {
+			java.util.Iterator iter = Track.iterator();
+			Track nextTrack;
+			while(iter.hasNext()) {
+				nextTrack = (Track) iter.next();
+				try {
+					nextTrack.play();
+				}catch(PlayerException e){
+					throw e;
+				}
+			}
+		}else {
+			JFrame f;  
+			f=new JFrame();  
+			JOptionPane.showMessageDialog(f,"ERROR:DVD length is non-positive"); 
+			throw new PlayerException("ERROR:DVD length is non-positive");
 		}
+//		for (int i = 0;i < Track.size();i++) {
+//			Track.get(i).play();
+//		}
 		
 	}
 

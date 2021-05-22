@@ -5,6 +5,7 @@ import hust.soict.globalict.aims.Store;
 import hust.soict.globalict.aims.cart.Cart.Cart;
 import hust.soict.globalict.aims.disc.children.CompactDisc;
 import hust.soict.globalict.aims.disc.children.DigitalVideoDisc;
+import hust.soict.globalict.aims.exception.PlayerException;
 import hust.soict.globalict.aims.media.Media;
 import hust.soict.globalict.aims.media.Track;
 import hust.soict.globalict.aims.media.children.Book;
@@ -27,7 +28,7 @@ public class Aims {
 			Store.MediaInfo(Store.itemsInStore.get(i));
 		}
 	}
-	public static void cartMenu(Cart anOrder) {
+	public static void cartMenu(Cart anOrder) throws PlayerException {
 		System.out.println("Options: "); 
 		System.out.println("--------------------------------"); 
 		System.out.println("1. Filter medias in cart"); 
@@ -90,7 +91,12 @@ public class Aims {
 			anOrder.removeMedia(id);
 			cartMenu(anOrder);
 		case 4:
-			anOrder.getALuckyItem().setCost(0f);
+			try {
+				anOrder.getALuckyItem().setCost(0f);
+			}catch(Exception e) {
+				
+			}
+			
 			break;
 		case 5:
 			System.out.println("Place order");
@@ -108,17 +114,22 @@ public class Aims {
 		}
 		}
 		
-	public static void playMedia(Cart anOrder,Store Store) {
+	public static void playMedia(Cart anOrder,Store Store) throws PlayerException {
 		showStore(Store);
 		System.out.println("Which one want to play?"); 
 		Scanner keyboard = new Scanner(System.in);
 		int id = keyboard.nextInt();
 		for(int i = 0;i < Store.itemsInStore.size();i++) {
 			if (id == Store.itemsInStore.get(i).getId()) {
-				if (Store.itemsInStore.get(i) instanceof Disc) {
-					Disc b = (Disc) Store.itemsInStore.get(i);
+				if (Store.itemsInStore.get(i) instanceof DigitalVideoDisc) {
+					DigitalVideoDisc b = (DigitalVideoDisc) Store.itemsInStore.get(i);
+					try {
+						b.play();
+					}
+					catch (PlayerException e) {
+						throw new PlayerException("ERROR:DVD length is non-positive");
+					}
 					
-					b.play();
 					return;
 				}else {
 					System.out.println("Can not play this type of Media");
@@ -128,7 +139,7 @@ public class Aims {
 		} 
 		System.out.println("Id not existed");
 	}
-	public static void playMedia(Cart anOrder) {
+	public static void playMedia(Cart anOrder) throws PlayerException {
 		Collections.sort(anOrder.itemsOrdered,Media.COMPARE_BY_TITLE_COST);
 		System.out.println("DVD - [Title] - [category] - [Director] - [Length]: [Price] $");
 		for (int i=0; i< anOrder.itemsOrdered.size();i++) {
@@ -139,8 +150,8 @@ public class Aims {
 		int id = keyboard.nextInt();
 		for (int i=0; i< anOrder.itemsOrdered.size();i++) {
 			if (id == anOrder.itemsOrdered.get(i).getId()) {
-				if (anOrder.itemsOrdered.get(i) instanceof Disc) {
-					Disc b = (Disc) anOrder.itemsOrdered.get(i);
+				if (anOrder.itemsOrdered.get(i) instanceof DigitalVideoDisc) {
+					DigitalVideoDisc b = (DigitalVideoDisc) anOrder.itemsOrdered.get(i);
 					
 					b.play();
 					return;
@@ -210,7 +221,7 @@ public class Aims {
 	public void toStoreScreen() {
 		
 	}
-	public static void updateStore(Store Store,Cart anOrder) {
+	public static void updateStore(Store Store,Cart anOrder) throws PlayerException {
 		System.out.println("Press 1 to remove, 0 to add -1 to exit:");
 		Scanner keyboard = new Scanner(System.in);
 		int addRemove = keyboard.nextInt();
@@ -242,7 +253,7 @@ public class Aims {
 			updateStore(Store,anOrder);
 		}
 	}
-	public static void switchshowMenu(Store Store,Cart anOrder) {
+	public static void switchshowMenu(Store Store,Cart anOrder) throws PlayerException {
 		int Menuchoose=showMenu();
 		switch (Menuchoose) {
 		case 1:
@@ -294,14 +305,14 @@ public class Aims {
 		}
 	}
 	 
-	public static void main(String[] args)throws InterruptedException {
+	public static void main(String[] args)throws InterruptedException, PlayerException {
 		Cart anOrder = new Cart();
 		
 		Store Store = new Store();
 		
 		//add dvd to Store
 		
-		DigitalVideoDisc dvd1 = new DigitalVideoDisc("The Lion King","Animation","Roger Allers",87,19.95f);
+		DigitalVideoDisc dvd1 = new DigitalVideoDisc("The Lion King","Animation","Roger Allers",-87,19.95f);
 		Store.addMedia(dvd1);
 		
 		DigitalVideoDisc dvd2 = new DigitalVideoDisc("Star Wars","Science Fiction","George Lucas",87,24.95f);
